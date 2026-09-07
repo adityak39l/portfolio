@@ -1,8 +1,14 @@
 # Aditya Kumar Verma — Personal Portfolio Website 🚀
 
+### 🌐 Live Portfolio Website: [https://adityak39l.github.io/portfolio/](https://adityak39l.github.io/portfolio/)
+👉 **Click here to view live site:** **[https://adityak39l.github.io/portfolio/](https://adityak39l.github.io/portfolio/)**
+
+---
+
 > **A modern, high-performance developer portfolio fusing Editorial Neo-Brutalism with Cosmic Cyber Tech.**
 
-![Portfolio Banner](https://img.shields.io/badge/Status-Active-2563eb?style=for-the-badge)
+![Portfolio Banner](https://img.shields.io/badge/Status-Live%20&%20Active-2563eb?style=for-the-badge)
+![Website](https://img.shields.io/badge/Website-adityak39l.github.io%2Fportfolio-success?style=for-the-badge)
 ![Tech Stack](https://img.shields.io/badge/Stack-HTML5%20%7C%20CSS3%20%7C%20JS%20%7C%20WebAudio%20%7C%20Canvas-18181b?style=for-the-badge)
 ![B.Tech](https://img.shields.io/badge/B.Tech-EIE%204th%20Year-yellow?style=for-the-badge)
 ![College](https://img.shields.io/badge/University-Bundelkhand%20University%20(IET)-dc2626?style=for-the-badge)
