@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aditya Kumar Verma | Full Stack Web Developer & Software Engineer</title>
+  <meta name="description" content="Portfolio of Aditya Kumar Verma, B.Tech EIE 4th Year at Bundelkhand University (IET) Jhansi. Full Stack Web Developer proficient in Next.js, React, Python, and SQLite." />
+  <meta name="keywords" content="Aditya Kumar Verma, BU Jhansi, IET Jhansi, Full Stack Developer, Next.js, React, Python, Web Developer, Portfolio, BU Result Hub" />
+  <meta name="author" content="Aditya Kumar Verma" />
+
+  <!-- Fonts: Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Background Canvas for Cosmic / Particle Mode -->
+  <canvas id="cosmos-bg" aria-hidden="true"></canvas>
+
+  <!-- Interactive Doodle Drawing Canvas (Sujal Style) -->
+  <canvas id="doodle-canvas" aria-hidden="true"></canvas>
+
+  <!-- Floating Doodle Toolbar (Sujal Style) -->
+  <aside class="doodle-toolbar" id="doodle-toolbar" aria-label="Doodle Controls">
+    <button type="button" id="doodle-toggle-btn" class="tool-btn doodle-pen-btn" title="Toggle Doodle Pen (Draw on page!)" aria-label="Toggle Doodle Pen">
+      <span class="pen-icon">✎</span>
+      <span class="btn-tooltip">Doodle on page</span>
+    </button>
+    <div class="doodle-subtools" id="doodle-subtools">
+      <button type="button" class="color-dot active" data-color="#2563eb" style="background: #2563eb;" title="Blue Pen"></button>
+      <button type="button" class="color-dot" data-color="#ef4444" style="background: #ef4444;" title="Red Pencil"></button>
+      <button type="button" class="color-dot" data-color="#18181b" style="background: #18181b;" title="Ink Black"></button>
+      <button type="button" id="doodle-clear-btn" class="tool-action-btn" title="Clear all drawings">
+        <i class="fas fa-trash-can"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-header" id="navbar">
+    <nav class="nav-container">
+      <a href="#hero" class="nav-brand">
+        <span class="brand-monogram">AKV</span>
+        <span class="brand-name">Aditya<span class="brand-star">✳</span></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Toolbox</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#experience" class="nav-link">Milestones</a></li>
+        <li><a href="#resume" class="nav-link">Resume</a></li>
+        <li><a href="#reviews" class="nav-link">Notes</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <!-- Action Controls: Audio SFX + Theme Switcher + Mobile Toggle -->
+      <div class="nav-actions">
+        <!-- SFX Mute/Unmute (Sujal Style) -->
+        <button type="button" id="sfx-toggle" class="icon-toggle-btn" title="Toggle Sound Effects" aria-label="Toggle Sound Effects">
+          <i class="fas fa-volume-high" id="sfx-icon"></i>
+        </button>
+
+        <!-- Theme Toggle (Paper Brutalist vs Cosmic Dark) -->
+        <button type="button" id="theme-toggle" class="theme-switch-btn" title="Switch Theme (Paper Editorial / Cosmic Tech)" aria-label="Switch Theme">
+          <span class="theme-icon moon-icon"><i class="fas fa-moon"></i></span>
+          <span class="theme-icon sun-icon"><i class="fas fa-sun"></i></span>
+          <span class="theme-badge" id="theme-text">Paper</span>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main id="main-content">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container">
+        <div class="hero-text-col">
+          
+          <!-- Editorial Eyebrow Tag -->
+          <div class="eyebrow-container">
+            <span class="status-pill">
+              <span class="pulse-dot"></span>
+              Open to Opportunities
+            </span>
+            <span class="location-pill">
+              <i class="fas fa-location-dot"></i> BU (IET) Jhansi, UP
+            </span>
+          </div>
+
+          <!-- Hero Headline (Sujal Bold Editorial + Highlighter) -->
+          <h1 class="hero-headline">
+            Aditya Kumar Verma builds <span class="highlight-marker">useful web systems</span> &amp; data solutions.
+          </h1>
+
+          <!-- Typewriter Dynamic Subtitle (Garvit Style) -->
+          <div class="hero-typewriter-box">
+            <span class="terminal-prompt">&gt;</span>
+            <span class="typewriter-text" id="typewriter"></span>
+            <span class="typewriter-cursor">|</span>
+          </div>
+
+          <!-- Bio Paragraph -->
+          <p class="hero-desc">
+            Fourth-year B.Tech Electronics &amp; Instrumentation Engineering student at 
+            <strong>Bundelkhand University (IET), Jhansi</strong> (SGPA: 8.0/10). Crafting high-performance web applications, 
+            automated scraping pipelines, and scalable portals from database architecture to smooth user interface.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary stamp-hover">
+              <span>See the Work</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="#resume" class="btn btn-secondary">
+              <i class="fas fa-file-pdf"></i>
+              <span>View Resume</span>
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              <i class="fas fa-paper-plane"></i>
+              <span>Get In Touch</span>
+            </a>
+          </div>
+
+          <!-- Social Links -->
+          <div class="hero-social-row">
+            <span class="social-label">Connect:</span>
+            <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="social-chip" title="GitHub">
+              <i class="fab fa-github"></i>
+              <span>github/adityak39l</span>
+            </a>
+            <a href="https://linkedin.com/in/aditya-verma-0309l" target="_blank" rel="noopener noreferrer" class="social-chip" title="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+              <span>in/aditya-verma</span>
+            </a>
+            <a href="mailto:adityakverma945085@gmail.com" class="social-chip" title="Email">
+              <i class="fas fa-envelope"></i>
+              <span>adityakverma945085</span>
+            </a>
+            <a href="tel:+918423674966" class="social-chip" title="Phone">
+              <i class="fas fa-phone"></i>
+              <span>+91 8423674966</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Hero Graphic & Polaroid Card (Sujal Polaroid Style) -->
+        <div class="hero-visual-col">
+          <!-- Playful Hand-Drawn Annotation Arrow -->
+          <div class="scribble-annotation" aria-hidden="true">
+            <span class="annotation-text">that's me!</span>
+            <svg class="curved-arrow" viewBox="0 0 100 50" fill="none">
+              <path d="M10,10 C40,45 70,40 90,15 M80,12 L92,15 L88,27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <!-- The Polaroid Card Container -->
+          <div class="polaroid-card">
+            <!-- Simulated Washi Tape Elements -->
+            <div class="washi-tape tape-left" aria-hidden="true"></div>
+            <div class="washi-tape tape-right" aria-hidden="true"></div>
+
+            <div class="polaroid-inner">
+              <div class="developer-avatar-wrapper">
+                <div class="avatar-art">
+                  <div class="code-badge-floating">&lt;/&gt; Next.js</div>
+                  <div class="code-badge-floating-2">Python 🐍</div>
+                  <!-- Minimalist Creative Developer Silhouette Art -->
+                  <div class="dev-illustration">
+                    <div class="dev-face">
+                      <div class="dev-glasses"></div>
+                      <div class="dev-smile"></div>
+                    </div>
+                    <div class="dev-body"></div>
+                    <div class="dev-laptop">
+                      <div class="laptop-screen">
+                        <span class="screen-line">const engineer = "Aditya";</span>
+                        <span class="screen-line">build(impactfulTools);</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Polaroid Caption -->
+              <div class="polaroid-caption">
+                <div class="caption-header">
+                  <span class="fig-number">fig. 01 — the developer</span>
+                  <span class="badge-status">B.Tech Final Year</span>
+                </div>
+                <div class="caption-details">
+                  <p class="caption-title">Aditya Kumar Verma</p>
+                  <p class="caption-subtitle">Electronics &amp; Instrumentation • BU Jhansi</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Stats Floating Badges (Garvit / Sujal Fusion) -->
+          <div class="floating-metrics">
+            <div class="metric-card">
+              <span class="metric-value">8.0</span>
+              <span class="metric-label">B.Tech SGPA</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">150+</span>
+              <span class="metric-label">Students Indexed</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">7+</span>
+              <span class="metric-label">Projects Built</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Infinite Marquee Ticker (Sujal Style) -->
+      <div class="marquee-band">
+        <div class="marquee-track">
+          <div class="marquee-content">
+            <span>Next.js 14 <strong class="star-sep">✳</strong></span>
+            <span>React.js <strong class="star-sep">✳</strong></span>
+            <span>Python <strong class="star-sep">✳</strong></span>
+            <span>BeautifulSoup Web Scraper <strong class="star-sep">✳</strong></span>
+            <span>SQLite &amp; MySQL <strong class="star-sep">✳</strong></span>
+            <span>Tailwind CSS <strong class="star-sep">✳</strong></span>
+            <span>RESTful APIs <strong class="star-sep">✳</strong></span>
+            <span>Bundelkhand University Jhansi <strong class="star-sep">✳</strong></span>
+            <span>Full-Stack Engineering <strong class="star-sep">✳</strong></span>
+            <span>Clean Code &amp; Architecture <strong class="star-sep">✳</strong></span>
+          </div>
+          <!-- Cloned for seamless loop -->
+          <div class="marquee-content" aria-hidden="true">
+            <span>Next.js 14 <strong class="star-sep">✳</strong></span>
+            <span>React.js <strong class="star-sep">✳</strong></span>
+            <span>Python <strong class="star-sep">✳</strong></span>
+            <span>BeautifulSoup Web Scraper <strong class="star-sep">✳</strong></span>
+            <span>SQLite &amp; MySQL <strong class="star-sep">✳</strong></span>
+            <span>Tailwind CSS <strong class="star-sep">✳</strong></span>
+            <span>RESTful APIs <strong class="star-sep">✳</strong></span>
+            <span>Bundelkhand University Jhansi <strong class="star-sep">✳</strong></span>
+            <span>Full-Stack Engineering <strong class="star-sep">✳</strong></span>
+            <span>Clean Code &amp; Architecture <strong class="star-sep">✳</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / FIELD NOTES SECTION (Sujal Style Editorial) -->
+    <section class="section-container" id="about">
+      <div class="section-header">
+        <div class="section-tag-box">
+          <span class="tag-stamp">Field Notes</span>
+        </div>
+        <div class="section-title-wrap">
+          <h2 class="section-heading">About <span class="marker-underline">the engineer</span></h2>
+          <div class="dashed-guide-line" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="field-notes-grid">
+        <!-- Story Card 1 -->
+        <article class="note-card polaroid-style rotate-subtle-1">
+          <div class="card-fig-label">fig. 02 — academic journey</div>
+          <div class="note-content">
+            <div class="note-badge">Undergraduate</div>
+            <h3 class="note-title">Bundelkhand University (IET), Jhansi</h3>
+            <p class="note-meta">B.Tech in Electronics and Instrumentation Engineering (4th Year)</p>
+            <p class="note-body">
+              Currently pursuing my final year with a consistent academic record of <strong>8.0 SGPA</strong>. 
+              My background in Electronics and Instrumentation provides me with a strong analytical foundation, 
+              computational thinking, and a structured approach to solving real-world software challenges.
+            </p>
+            <div class="note-footer-pills">
+              <span>IET Jhansi</span>
+              <span>SGPA: 8.0/10</span>
+              <span>Class of 2026</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Story Card 2 -->
+        <article class="note-card polaroid-style rotate-subtle-2">
+          <div class="card-fig-label">fig. 03 — engineering philosophy</div>
+          <div class="note-content">
+            <div class="note-badge">Craft &amp; Focus</div>
+            <h3 class="note-title">From Data Pipelines to Intuitive UIs</h3>
+            <p class="note-meta">Bridging Automation &amp; Web Experiences</p>
+            <p class="note-body">
+              I don't just build static templates — I construct systems that solve tangible pain points. 
+              Whether it's parsing messy university gazettes using Python BeautifulSoup to deliver instant 
+              academic analytics or architecting responsive club platforms, I focus on clean maintainable code, 
+              robust database models, and snappy performance.
+            </p>
+            <div class="note-footer-pills">
+              <span>Web Scraping</span>
+              <span>REST APIs</span>
+              <span>Data Architecture</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Story Card 3 -->
+        <article class="note-card polaroid-style rotate-subtle-3">
+          <div class="card-fig-label">fig. 04 — campus leadership</div>
+          <div class="note-content">
+            <div class="note-badge">Community</div>
+            <h3 class="note-title">Innovation &amp; Automation Club (IAC)</h3>
+            <p class="note-meta">Web Lead &amp; Technical Contributor</p>
+            <p class="note-body">
+              Spearheaded the design and deployment of the official web platform for the Innovation &amp; Automation Club 
+              at IET BU Jhansi. Organized digital event registration pipelines, collaborated with cross-functional 
+              student teams, and facilitated tech awareness across academic branches.
+            </p>
+            <div class="note-footer-pills">
+              <span>Leadership</span>
+              <span>IAC IET BU</span>
+              <span>Team Collaboration</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TOOLBOX / TECH STACK SECTION (Garvit Categorized + Sujal Brutalist Cards) -->
+    <section class="section-container" id="skills">
+      <div class="section-header">
+        <div class="section-tag-box">
+          <span class="tag-stamp">Toolbox</span>
+        </div>
+        <div class="section-title-wrap">
+          <h2 class="section-heading">&lt; Technologies &amp; Tools /&gt;</h2>
+          <div class="dashed-guide-line" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="toolbox-grid">
+        <!-- Category 1: Front-End -->
+        <div class="stack-category-card">
+          <div class="category-header">
+            <i class="fas fa-laptop-code category-icon"></i>
+            <div>
+              <h3 class="category-title">Front-End Development</h3>
+              <p class="category-sub">Interactive &amp; accessible web interfaces</p>
+            </div>
+          </div>
+          <div class="tech-pills-container">
+            <div class="tech-pill">
+              <i class="devicon-react-original colored"></i>
+              <span>React.js</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-nextjs-plain"></i>
+              <span>Next.js 14</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-javascript-plain colored"></i>
+              <span>JavaScript (ES6+)</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-tailwindcss-plain colored"></i>
+              <span>Tailwind CSS</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-html5-plain colored"></i>
+              <span>HTML5</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-css3-plain colored"></i>
+              <span>CSS3</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-bootstrap-plain colored"></i>
+              <span>Bootstrap</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 2: Back-End & Data -->
+        <div class="stack-category-card">
+          <div class="category-header">
+            <i class="fas fa-server category-icon"></i>
+            <div>
+              <h3 class="category-title">Back-End &amp; Databases</h3>
+              <p class="category-sub">Server logic, pipelines &amp; schemas</p>
+            </div>
+          </div>
+          <div class="tech-pills-container">
+            <div class="tech-pill">
+              <i class="devicon-python-plain colored"></i>
+              <span>Python</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-sqlite-plain colored"></i>
+              <span>SQLite</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-mysql-plain colored"></i>
+              <span>MySQL</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-nodejs-plain colored"></i>
+              <span>Node.js (Basics)</span>
+            </div>
+            <div class="tech-pill">
+              <i class="fas fa-spider colored-icon"></i>
+              <span>BeautifulSoup (Scraper)</span>
+            </div>
+            <div class="tech-pill">
+              <i class="fas fa-network-wired colored-icon"></i>
+              <span>RESTful APIs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 3: Programming Languages -->
+        <div class="stack-category-card">
+          <div class="category-header">
+            <i class="fas fa-code category-icon"></i>
+            <div>
+              <h3 class="category-title">Programming &amp; Core</h3>
+              <p class="category-sub">Foundational computer science concepts</p>
+            </div>
+          </div>
+          <div class="tech-pills-container">
+            <div class="tech-pill">
+              <i class="devicon-javascript-plain colored"></i>
+              <span>JavaScript</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-python-plain colored"></i>
+              <span>Python 3</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-cplusplus-plain colored"></i>
+              <span>C / C++</span>
+            </div>
+            <div class="tech-pill">
+              <i class="fas fa-database colored-icon"></i>
+              <span>Relational SQL</span>
+            </div>
+            <div class="tech-pill">
+              <i class="fas fa-diagram-project colored-icon"></i>
+              <span>DOM Manipulation</span>
+            </div>
+            <div class="tech-pill">
+              <i class="fas fa-chart-line colored-icon"></i>
+              <span>Data Analytics</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 4: Tools & Workflow -->
+        <div class="stack-category-card">
+          <div class="category-header">
+            <i class="fas fa-screwdriver-wrench category-icon"></i>
+            <div>
+              <h3 class="category-title">Tools &amp; Platforms</h3>
+              <p class="category-sub">Productivity, versioning &amp; deployment</p>
+            </div>
+          </div>
+          <div class="tech-pills-container">
+            <div class="tech-pill">
+              <i class="devicon-git-plain colored"></i>
+              <span>Git</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-github-original"></i>
+              <span>GitHub</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-vscode-plain colored"></i>
+              <span>VS Code</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-postman-plain colored"></i>
+              <span>Postman</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-vercel-original"></i>
+              <span>Vercel</span>
+            </div>
+            <div class="tech-pill">
+              <i class="devicon-npm-original-wordmark colored"></i>
+              <span>npm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION (Curated from Resume with Interactive Filtering) -->
+    <section class="section-container" id="projects">
+      <div class="section-header">
+        <div class="section-tag-box">
+          <span class="tag-stamp">Build Log</span>
+        </div>
+        <div class="section-title-wrap">
+          <h2 class="section-heading">Shipped &amp; <span class="marker-underline">In The Wild</span></h2>
+          <div class="dashed-guide-line" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="project-filter-bar">
+        <button type="button" class="filter-btn active" data-filter="all">All Projects</button>
+        <button type="button" class="filter-btn" data-filter="featured">Featured &amp; Data</button>
+        <button type="button" class="filter-btn" data-filter="fullstack">Full-Stack Web</button>
+        <button type="button" class="filter-btn" data-filter="creative">Creative &amp; UI</button>
+      </div>
+
+      <!-- Project Cards Grid -->
+      <div class="projects-grid" id="projects-container">
+
+        <!-- Project 1: BU Result Hub (FLAGSHIP) -->
+        <article class="project-card featured-project" data-category="featured fullstack">
+          <div class="project-banner-badge">★ Flagship Project</div>
+          <div class="project-card-header">
+            <div class="project-title-group">
+              <span class="project-date">Aug 2026</span>
+              <h3 class="project-name">BU Result Hub</h3>
+              <p class="project-subtitle">Academic Analytics &amp; Automated Gazette Extraction Portal</p>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/adityak39l/BU-Result-HUB" target="_blank" rel="noopener noreferrer" class="link-btn" title="View GitHub Repository">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://bu-btech-resulthub.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-btn" title="Open Live Website">
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="project-description-box">
+            <p>
+              Architected a centralized academic analytics portal for <strong>Bundelkhand University</strong> covering all 7 B.Tech branches. 
+              Engineered an automated Python scraper pipeline utilizing <strong>BeautifulSoup</strong> to parse complex university gazette marksheets 
+              and indexed <strong>150+ student records</strong>. Implemented instant roll-number search, branch-wise leaderboards, 
+              student comparison tools, and interactive CGPA visual analytics.
+            </p>
+          </div>
+
+          <div class="project-highlights">
+            <div class="highlight-item">
+              <i class="fas fa-bolt"></i>
+              <span>Sub-second Roll Number Querying</span>
+            </div>
+            <div class="highlight-item">
+              <i class="fas fa-users"></i>
+              <span>150+ Marksheets Indexed Across 7 Branches</span>
+            </div>
+            <div class="highlight-item">
+              <i class="fas fa-chart-pie"></i>
+              <span>Dynamic Branch-wise CGPA Distribution</span>
+            </div>
+          </div>
+
+          <div class="project-tags">
+            <span class="tech-tag">Next.js 14</span>
+            <span class="tech-tag">Python Scraper</span>
+            <span class="tech-tag">BeautifulSoup</span>
+            <span class="tech-tag">Tailwind CSS</span>
+            <span class="tech-tag">SQLite</span>
+            <span class="tech-tag">Analytics</span>
+          </div>
+
+          <!-- Direct Action Buttons -->
+          <div class="project-cta-row">
+            <a href="https://bu-btech-resulthub.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary stamp-hover">
+              <i class="fas fa-arrow-up-right-from-square"></i>
+              <span>Live Website</span>
+            </a>
+            <a href="https://github.com/adityak39l/BU-Result-HUB" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <i class="fab fa-github"></i>
+              <span>GitHub Repo</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2: IAC Platform -->
+        <article class="project-card" data-category="featured fullstack">
+          <div class="project-card-header">
+            <div class="project-title-group">
+              <span class="project-date">Aug 2026</span>
+              <h3 class="project-name">Innovation &amp; Automation Club (IAC)</h3>
+              <p class="project-subtitle">Official Web Platform for IET Bundelkhand University</p>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/adityak39l/AK39-INNOVATION-AUTOMATION-CLUB-IET-BU-JHANSI" target="_blank" rel="noopener noreferrer" class="link-btn" title="View GitHub Repository">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://adityak39l.github.io/AK39-INNOVATION-AUTOMATION-CLUB-IET-BU-JHANSI/" target="_blank" rel="noopener noreferrer" class="link-btn" title="Open Live Website">
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="project-description-box">
+            <p>
+              Designed and developed the official digital portal for the Innovation &amp; Automation Club (IAC), 
+              IET Bundelkhand University. Built responsive interfaces for event announcements, student registration 
+              workflows, and core team member profiles. Optimized asset loading, mobile viewport responsiveness, 
+              and accessibility standards.
+            </p>
+          </div>
+
+          <div class="project-tags">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">Tailwind CSS</span>
+            <span class="tech-tag">Responsive UI</span>
+            <span class="tech-tag">Event Systems</span>
+          </div>
+
+          <div class="project-cta-row">
+            <a href="https://adityak39l.github.io/AK39-INNOVATION-AUTOMATION-CLUB-IET-BU-JHANSI/" target="_blank" rel="noopener noreferrer" class="btn btn-primary stamp-hover">
+              <i class="fas fa-arrow-up-right-from-square"></i>
+              <span>Live Website</span>
+            </a>
+            <a href="https://github.com/adityak39l/AK39-INNOVATION-AUTOMATION-CLUB-IET-BU-JHANSI" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <i class="fab fa-github"></i>
+              <span>GitHub Repo</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3: Demon Slayer Themed Web Experience -->
+        <article class="project-card" data-category="creative">
+          <div class="project-card-header">
+            <div class="project-title-group">
+              <span class="project-date">Sep – Oct 2025</span>
+              <h3 class="project-name">Demon Slayer Web Experience</h3>
+              <p class="project-subtitle">Interactive Anime Parallax &amp; Scroll Transitions</p>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="link-btn" title="View GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://demonsla.ccbp.tech/" target="_blank" rel="noopener noreferrer" class="link-btn" title="Open Live Demo">
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="project-description-box">
+            <p>
+              Constructed a high-visual anime-themed interactive web app featuring custom CSS scroll-based 
+              parallax animations, kinetic typography, dynamic audio-visual transitions, and responsive character showcases.
+            </p>
+          </div>
+
+          <div class="project-tags">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3 Parallax</span>
+            <span class="tech-tag">JavaScript DOM</span>
+            <span class="tech-tag">Keyframe Animations</span>
+          </div>
+
+          <div class="project-cta-row">
+            <a href="https://demonsla.ccbp.tech/" target="_blank" rel="noopener noreferrer" class="btn btn-primary stamp-hover">
+              <i class="fas fa-arrow-up-right-from-square"></i>
+              <span>Live Website</span>
+            </a>
+            <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <i class="fab fa-github"></i>
+              <span>Source Repo</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 4: Food Ordering Website -->
+        <article class="project-card" data-category="creative fullstack">
+          <div class="project-card-header">
+            <div class="project-title-group">
+              <span class="project-date">May – Jun 2025</span>
+              <h3 class="project-name">Gourmet Food Ordering Web App</h3>
+              <p class="project-subtitle">Menu Navigation &amp; Cart State Engine</p>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="link-btn" title="View GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://food39.ccbp.tech/" target="_blank" rel="noopener noreferrer" class="link-btn" title="Open Live Demo">
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="project-description-box">
+            <p>
+              Engineered a modern restaurant web interface featuring category filtering, real-time item counter, 
+              interactive cart state handling, dynamic pricing calculations, and smooth checkout flow.
+            </p>
+          </div>
+
+          <div class="project-tags">
+            <span class="tech-tag">JavaScript (ES6+)</span>
+            <span class="tech-tag">Cart State</span>
+            <span class="tech-tag">Responsive Layout</span>
+            <span class="tech-tag">CSS Grid/Flexbox</span>
+          </div>
+
+          <div class="project-cta-row">
+            <a href="https://food39.ccbp.tech/" target="_blank" rel="noopener noreferrer" class="btn btn-primary stamp-hover">
+              <i class="fas fa-arrow-up-right-from-square"></i>
+              <span>Live Website</span>
+            </a>
+            <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <i class="fab fa-github"></i>
+              <span>Source Repo</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 5: Top Engineering Colleges Search -->
+        <article class="project-card" data-category="featured creative">
+          <div class="project-card-header">
+            <div class="project-title-group">
+              <span class="project-date">Jul – Aug 2025</span>
+              <h3 class="project-name">Top Engineering Colleges Finder</h3>
+              <p class="project-subtitle">Dynamic Multi-Criteria Search &amp; Filtering Tool</p>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="link-btn" title="View GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://college2.ccbp.tech/" target="_blank" rel="noopener noreferrer" class="link-btn" title="Open Live Demo">
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="project-description-box">
+            <p>
+              Created a search-driven web app with instant keyword filtering algorithms to dynamically query 
+              top engineering institution data, rankings, cutoff trends, and branch offerings without page reloads.
+            </p>
+          </div>
+
+          <div class="project-tags">
+            <span class="tech-tag">Instant Search</span>
+            <span class="tech-tag">Filter Algorithms</span>
+            <span class="tech-tag">DOM Optimization</span>
+            <span class="tech-tag">JSON Data</span>
+          </div>
+
+          <div class="project-cta-row">
+            <a href="https://college2.ccbp.tech/" target="_blank" rel="noopener noreferrer" class="btn btn-primary stamp-hover">
+              <i class="fas fa-arrow-up-right-from-square"></i>
+              <span>Live Website</span>
+            </a>
+            <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <i class="fab fa-github"></i>
+              <span>Source Repo</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 6: Birthday Wish Generator -->
+        <article class="project-card" data-category="creative">
+          <div class="project-card-header">
+            <div class="project-title-group">
+              <span class="project-date">Mar – Apr 2025</span>
+              <h3 class="project-name">Birthday Wish Greeting Generator</h3>
+              <p class="project-subtitle">Dynamic Greeting Engine &amp; Visual Celebration Effects</p>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="link-btn" title="View GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://wishcardbirth.ccbp.tech/" target="_blank" rel="noopener noreferrer" class="link-btn" title="Open Live Demo">
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="project-description-box">
+            <p>
+              Built an interactive greeting application with custom name inputs, dynamic DOM rendering, 
+              personalized animations, and celebration confetti effects designed for sharing customized greetings.
+            </p>
+          </div>
+
+          <div class="project-tags">
+            <span class="tech-tag">JavaScript DOM</span>
+            <span class="tech-tag">Dynamic Rendering</span>
+            <span class="tech-tag">CSS Keyframes</span>
+            <span class="tech-tag">State Handling</span>
+          </div>
+
+          <div class="project-cta-row">
+            <a href="https://wishcardbirth.ccbp.tech/" target="_blank" rel="noopener noreferrer" class="btn btn-primary stamp-hover">
+              <i class="fas fa-arrow-up-right-from-square"></i>
+              <span>Live Website</span>
+            </a>
+            <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <i class="fab fa-github"></i>
+              <span>Source Repo</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 7: WanderLust Booking Platform -->
+        <article class="project-card" data-category="fullstack">
+          <div class="project-card-header">
+            <div class="project-title-group">
+              <span class="project-date">2025</span>
+              <h3 class="project-name">WanderLust Booking Hub</h3>
+              <p class="project-subtitle">Full-Stack Accommodation &amp; Rental Application</p>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="link-btn" title="View Source">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="#contact" class="link-btn" title="Request Live Demo">
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="project-description-box">
+            <p>
+              Developed a full-stack accommodation booking web application utilizing React.js, Node.js, Express, 
+              and MongoDB. Implemented secure user authentication (JWT &amp; Sessions), REST API endpoints for property 
+              listings, client review mechanisms, and integrated payment simulation workflows with continuous Git version control.
+            </p>
+          </div>
+
+          <div class="project-tags">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Express</span>
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">JWT Auth</span>
+            <span class="tech-tag">REST API</span>
+          </div>
+
+          <div class="project-cta-row">
+            <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <i class="fab fa-github"></i>
+              <span>GitHub Repositories</span>
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              <i class="fas fa-paper-plane"></i>
+              <span>Inquire Access</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- RESUME VIEWER HUB (Garvit Embedded PDF + Sujal Craft) -->
+    <section class="section-container" id="resume">
+      <div class="section-header">
+        <div class="section-tag-box">
+          <span class="tag-stamp">Credentials</span>
+        </div>
+        <div class="section-title-wrap">
+          <h2 class="section-heading">Verified <span class="marker-underline">Resume &amp; Dossier</span></h2>
+          <div class="dashed-guide-line" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="resume-wrapper">
+        <div class="resume-meta-bar">
+          <div class="resume-info">
+            <div class="doc-icon"><i class="fas fa-file-pdf"></i></div>
+            <div>
+              <h3 class="doc-title">Aditya_Verma_Resume.pdf</h3>
+              <p class="doc-specs">B.Tech EIE • Bundelkhand University • 140 KB • Updated Sept 2026</p>
+            </div>
+          </div>
+
+          <div class="resume-cta-group">
+            <a href="Aditya_Verma_Resume.pdf" target="_blank" class="btn btn-secondary">
+              <i class="fas fa-expand"></i>
+              <span>Open in New Tab</span>
+            </a>
+            <a href="Aditya_Verma_Resume.pdf" download="Aditya_Kumar_Verma_Resume.pdf" class="btn btn-primary stamp-hover">
+              <i class="fas fa-download"></i>
+              <span>Download Resume</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Embedded PDF Iframe -->
+        <div class="resume-frame-container">
+          <iframe 
+            src="Aditya_Verma_Resume.pdf#view=FitH" 
+            title="Aditya Kumar Verma Official Resume"
+            class="resume-iframe">
+          </iframe>
+        </div>
+
+        <!-- Resume Snapshot Highlights -->
+        <div class="resume-highlights-grid">
+          <div class="resume-stat-box">
+            <span class="stat-number">8.0</span>
+            <span class="stat-label">SGPA at IET BU Jhansi</span>
+          </div>
+          <div class="resume-stat-box">
+            <span class="stat-number">7 Branches</span>
+            <span class="stat-label">Indexed in BU Result Hub</span>
+          </div>
+          <div class="resume-stat-box">
+            <span class="stat-number">4+</span>
+            <span class="stat-label">Industry Certifications</span>
+          </div>
+          <div class="resume-stat-box">
+            <span class="stat-number">Immediate</span>
+            <span class="stat-label">Notice Period / Ready to Join</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS & MILESTONES (Achievements Section) -->
+    <section class="section-container" id="experience">
+      <div class="section-header">
+        <div class="section-tag-box">
+          <span class="tag-stamp">Milestones</span>
+        </div>
+        <div class="section-title-wrap">
+          <h2 class="section-heading">Certifications &amp; <span class="marker-underline">Recognition</span></h2>
+          <div class="dashed-guide-line" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="certifications-grid">
+        <!-- Cert 1 -->
+        <div class="cert-card">
+          <div class="cert-icon-box"><i class="fas fa-award"></i></div>
+          <div class="cert-details">
+            <h3 class="cert-name">Static Website Development</h3>
+            <p class="cert-desc">Mastered semantic HTML5 markup, modern CSS3 layout styling, and web responsive principles.</p>
+            <a href="https://drive.google.com/file/d/1yU9LNMLRAnJD1OhmbGZBwWWWTxNH5DA1/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link-btn">
+              <span>View Certificate</span>
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Cert 2 -->
+        <div class="cert-card">
+          <div class="cert-icon-box"><i class="fas fa-mobile-screen-button"></i></div>
+          <div class="cert-details">
+            <h3 class="cert-name">Responsive Web Design</h3>
+            <p class="cert-desc">Mobile-first UI architecture, CSS Flexbox, CSS Grid layouts, and Bootstrap framework.</p>
+            <a href="https://drive.google.com/file/d/1BPyj1b-C1cAM6rdg8DaiZJATRUoZ1vQF/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link-btn">
+              <span>View Certificate</span>
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Cert 3 -->
+        <div class="cert-card">
+          <div class="cert-icon-box"><i class="fab fa-python"></i></div>
+          <div class="cert-details">
+            <h3 class="cert-name">Programming with Python</h3>
+            <p class="cert-desc">Core Python programming, data structures, algorithms, automation scripting, and file parsing.</p>
+            <a href="https://drive.google.com/file/d/1OjM3LlTIECcX9oDK84EKTT2BXDcKKg1e/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link-btn">
+              <span>View Certificate</span>
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Cert 4 -->
+        <div class="cert-card">
+          <div class="cert-icon-box"><i class="fas fa-database"></i></div>
+          <div class="cert-details">
+            <h3 class="cert-name">Database Management with SQLite</h3>
+            <p class="cert-desc">SQL query authoring, relational schema modeling, indexing, joins, and data persistence.</p>
+            <a href="https://drive.google.com/file/d/1RnG1A9mxC37vlzVX2WpZd4Z4HNEqrv11/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cert-link-btn">
+              <span>View Certificate</span>
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS / MARGIN NOTES (Sujal Marquee Cards) -->
+    <section class="section-container reviews-section" id="reviews">
+      <div class="section-header">
+        <div class="section-tag-box">
+          <span class="tag-stamp">Margin Notes</span>
+        </div>
+        <div class="section-title-wrap">
+          <h2 class="section-heading">Peer Endorsements &amp; <span class="marker-underline">Reviews</span></h2>
+          <div class="dashed-guide-line" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="reviews-marquee-container">
+        <div class="reviews-marquee-track">
+          <!-- Review 1 -->
+          <figure class="review-card">
+            <blockquote class="review-quote">
+              “Aditya’s BU Result Hub made checking semester analytics so effortless for our entire batch. His Python scraper and clean Next.js UI are top-notch!”
+            </blockquote>
+            <figcaption class="review-author">
+              <img src="https://api.dicebear.com/9.x/identicon/svg?seed=Aarav" alt="Aarav Avatar" class="author-avatar" />
+              <div>
+                <span class="author-name">Aarav Sharma</span>
+                <span class="author-role">Batchmate @ IET BU Jhansi</span>
+              </div>
+            </figcaption>
+          </figure>
+
+          <!-- Review 2 -->
+          <figure class="review-card">
+            <blockquote class="review-quote">
+              “Working with Aditya in the Innovation &amp; Automation Club was a breeze. He takes complete ownership of frontend code and delivers pixel-perfect layouts.”
+            </blockquote>
+            <figcaption class="review-author">
+              <img src="https://api.dicebear.com/9.x/identicon/svg?seed=Priya" alt="Priya Avatar" class="author-avatar" />
+              <div>
+                <span class="author-name">Priya Patel</span>
+                <span class="author-role">IAC Core Team Member</span>
+              </div>
+            </figcaption>
+          </figure>
+
+          <!-- Review 3 -->
+          <figure class="review-card">
+            <blockquote class="review-quote">
+              “Strong problem solver with an impressive grasp of JavaScript, Python, and databases. His analytical mindset from Instrumentation shines in web architecture.”
+            </blockquote>
+            <figcaption class="review-author">
+              <img src="https://api.dicebear.com/9.x/identicon/svg?seed=Vikram" alt="Vikram Avatar" class="author-avatar" />
+              <div>
+                <span class="author-name">Vikram Singh</span>
+                <span class="author-role">Software Mentor</span>
+              </div>
+            </figcaption>
+          </figure>
+
+          <!-- Review 4 -->
+          <figure class="review-card">
+            <blockquote class="review-quote">
+              “Detail-oriented, quick to adapt modern tools like Next.js 14 and Tailwind, and always enthusiastic about writing clean, maintainable code.”
+            </blockquote>
+            <figcaption class="review-author">
+              <img src="https://api.dicebear.com/9.x/identicon/svg?seed=Neha" alt="Neha Avatar" class="author-avatar" />
+              <div>
+                <span class="author-name">Neha Gupta</span>
+                <span class="author-role">Tech Lead / Reviewer</span>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION (Garvit Direct Channels + Sujal Brutalist Form) -->
+    <section class="section-container" id="contact">
+      <div class="section-header">
+        <div class="section-tag-box">
+          <span class="tag-stamp">Say Hello</span>
+        </div>
+        <div class="section-title-wrap">
+          <h2 class="section-heading">Let's Build <span class="marker-underline">Together</span></h2>
+          <div class="dashed-guide-line" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Direct Info Cards -->
+        <div class="contact-info-col">
+          <p class="contact-intro">
+            Currently open to full-time Software Engineer, Web Developer, and Full-Stack opportunities. 
+            Have a project idea, open role, or just want to chat tech? Reach out through any channel below!
+          </p>
+
+          <div class="contact-card-list">
+            <a href="mailto:adityakverma945085@gmail.com" class="contact-link-card">
+              <div class="contact-icon-bubble"><i class="fas fa-envelope"></i></div>
+              <div>
+                <span class="channel-label">Email Address</span>
+                <strong class="channel-val">adityakverma945085@gmail.com</strong>
+              </div>
+            </a>
+
+            <a href="tel:+918423674966" class="contact-link-card">
+              <div class="contact-icon-bubble"><i class="fas fa-phone"></i></div>
+              <div>
+                <span class="channel-label">Direct Phone / WhatsApp</span>
+                <strong class="channel-val">+91 8423674966</strong>
+              </div>
+            </a>
+
+            <a href="https://linkedin.com/in/aditya-verma-0309l" target="_blank" rel="noopener noreferrer" class="contact-link-card">
+              <div class="contact-icon-bubble"><i class="fab fa-linkedin-in"></i></div>
+              <div>
+                <span class="channel-label">LinkedIn Profile</span>
+                <strong class="channel-val">linkedin.com/in/aditya-verma-0309l</strong>
+              </div>
+            </a>
+
+            <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="contact-link-card">
+              <div class="contact-icon-bubble"><i class="fab fa-github"></i></div>
+              <div>
+                <span class="channel-label">GitHub Repositories</span>
+                <strong class="channel-val">github.com/adityak39l</strong>
+              </div>
+            </a>
+          </div>
+
+          <!-- Availability Box -->
+          <div class="availability-card">
+            <div class="avail-badge">● Ready to Deploy</div>
+            <p><strong>Open to Relocation &amp; Remote Work:</strong> Available for full-time on-site, hybrid, or remote developer positions across India.</p>
+          </div>
+        </div>
+
+        <!-- Interactive Contact Form -->
+        <div class="contact-form-col">
+          <div class="form-wrapper-box">
+            <h3 class="form-title">Send a Direct Message</h3>
+            <p class="form-subtitle">Leave your message and I'll get back to you within 24 hours.</p>
+
+            <form id="contact-form" class="brutalist-form">
+              <div class="form-field">
+                <label for="user-name">Your Name</label>
+                <input type="text" id="user-name" name="name" placeholder="e.g. Rahul Sharma" required />
+              </div>
+
+              <div class="form-field">
+                <label for="user-email">Your Email</label>
+                <input type="email" id="user-email" name="email" placeholder="e.g. rahul@example.com" required />
+              </div>
+
+              <div class="form-field">
+                <label for="user-subject">Subject</label>
+                <input type="text" id="user-subject" name="subject" placeholder="Project collaboration / Job Opportunity" required />
+              </div>
+
+              <div class="form-field">
+                <label for="user-message">Message</label>
+                <textarea id="user-message" name="message" rows="5" placeholder="Hi Aditya, we liked your BU Result Hub project..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block stamp-hover" id="form-submit-btn">
+                <i class="fas fa-paper-plane"></i>
+                <span>Send Message</span>
+              </button>
+
+              <div class="form-status-msg" id="form-status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <a href="#hero" class="footer-brand">Aditya Kumar Verma<span class="star-accent">✳</span></a>
+        <p class="footer-copyright">
+          Crafted with care, code, and curiosity. © 2026 Aditya Kumar Verma. All rights reserved.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#skills">Toolbox</a>
+        <a href="#projects">Work</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a href="https://linkedin.com/in/aditya-verma-0309l" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
