@@ -548,6 +548,7 @@ img, svg {
   gap: 12px;
   flex-wrap: wrap;
   font-family: 'Syne', 'Bricolage Grotesque', var(--font-display), sans-serif;
+  font-size: clamp(2.3rem, 5.2vw, 4rem);
   font-weight: 800;
   letter-spacing: -0.035em;
   position: relative;
@@ -691,6 +692,27 @@ img, svg {
 .footer-brand .footer-mid {
   color: var(--accent-blue);
   font-style: italic;
+}
+
+/* Secondary Headline Body Text (Scaled Down for Visual Hierarchy) */
+.headline-body {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.2vw, 1.65rem);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-muted);
+  letter-spacing: -0.015em;
+  margin-top: 10px;
+}
+
+.headline-body .highlight-marker {
+  color: var(--text-ink);
+  font-weight: 700;
+}
+
+[data-theme="cosmic"] .headline-body {
+  color: var(--text-muted);
 }
 
 .highlight-marker {
