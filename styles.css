@@ -1257,6 +1257,41 @@ img, svg {
   opacity: 0.3;
 }
 
+/* --- SCROLL REVEAL ANIMATIONS (Professional Fade-Slide-Up) --- */
+@keyframes revealFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(32px);
+}
+
+.reveal-on-scroll.revealed {
+  animation: revealFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered children reveal */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0.05s; }
+.reveal-stagger.revealed > *:nth-child(2) { transition-delay: 0.12s; }
+.reveal-stagger.revealed > *:nth-child(3) { transition-delay: 0.19s; }
+.reveal-stagger.revealed > *:nth-child(4) { transition-delay: 0.26s; }
+.reveal-stagger.revealed > *:nth-child(5) { transition-delay: 0.33s; }
+.reveal-stagger.revealed > *:nth-child(6) { transition-delay: 0.40s; }
+.reveal-stagger.revealed > * { opacity: 1; transform: translateY(0); }
+
 /* --- ABOUT / FIELD NOTES GRID --- */
 .field-notes-grid {
   display: grid;
@@ -1768,6 +1803,19 @@ img, svg {
   font-size: 0.85rem;
   color: var(--text-muted);
   margin-bottom: 12px;
+}
+
+.cert-issuer {
+  font-size: 0.78rem;
+  color: var(--text-subtle);
+  font-family: var(--font-mono);
+  letter-spacing: 0.01em;
+  margin-bottom: 6px;
+}
+
+.cert-issuer strong {
+  color: var(--accent-blue);
+  font-weight: 700;
 }
 
 .cert-badge {
@@ -3232,5 +3280,19 @@ body.menu-locked {
 
   .field-notes-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* --- ACCESSIBILITY: Respect prefers-reduced-motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll,
+  .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  .reveal-on-scroll.revealed {
+    animation: none !important;
   }
 }

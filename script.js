@@ -700,7 +700,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Pause scroll while drawing doodle so canvas doesn't shift
+      // Pause scroll while drawing doodle so canvas doesn't shift
     const doodleToggleBtn = document.getElementById('doodle-toggle-btn');
     if (doodleToggleBtn) {
       doodleToggleBtn.addEventListener('click', () => {
@@ -716,3 +716,61 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+// ============================================================
+// SECTION 12 — SCROLL REVEAL (Professional Fade-Slide-Up)
+// ============================================================
+(function initScrollReveal() {
+  if (typeof IntersectionObserver === 'undefined') return;
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  // Animate section headers
+  document.querySelectorAll('.section-header').forEach(el => {
+    el.classList.add('reveal-on-scroll');
+    revealObserver.observe(el);
+  });
+
+  // Animate content grids with stagger
+  const staggerTargets = [
+    '.field-notes-grid',
+    '.toolbox-grid',
+    '.projects-grid',
+    '.certifications-grid',
+    '.contact-card-list',
+    '.resume-highlights-grid',
+    '.floating-metrics'
+  ];
+
+  staggerTargets.forEach(selector => {
+    document.querySelectorAll(selector).forEach(el => {
+      el.classList.add('reveal-stagger');
+      revealObserver.observe(el);
+    });
+  });
+
+  // Animate individual project cards
+  document.querySelectorAll('.project-card').forEach((el, i) => {
+    el.classList.add('reveal-on-scroll');
+    el.style.transitionDelay = `${i * 0.07}s`;
+    revealObserver.observe(el);
+  });
+
+  // Animate cert cards
+  document.querySelectorAll('.cert-card').forEach((el, i) => {
+    el.classList.add('reveal-on-scroll');
+    el.style.transitionDelay = `${i * 0.08}s`;
+    revealObserver.observe(el);
+  });
+
+})();
