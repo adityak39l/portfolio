@@ -584,12 +584,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { passive: true });
 
-    backToTopBtn.addEventListener('click', () => {
+    backToTopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
       sfx.playClick();
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      if (window.lenis) {
+        window.lenis.scrollTo(0, { duration: 1.2 });
+      } else {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
     });
   }
 
@@ -603,7 +608,7 @@ document.addEventListener('DOMContentLoaded', () => {
       sfx.playStamp();
       const line = e.target.closest('.name-line');
       if (line) {
-        line.style.transform = 'scale(1.04) translateX(10px)';
+        line.style.transform = 'scale(1.04) translateY(-4px)';
         line.style.transition = 'transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)';
         setTimeout(() => {
           line.style.transform = '';
@@ -611,6 +616,103 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300);
       }
     });
+  }
+
+
+  // ==========================================
+  // 11. LENIS SMOOTH MOMENTUM SCROLL (Nishant Rajput Fluid Physics)
+  // ==========================================
+  let lenisInstance = null;
+  if (typeof Lenis !== 'undefined') {
+    lenisInstance = new Lenis({
+      duration: 1.2,                                            // Exact signature Nishant glide duration
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Natural exponential easing
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.0,                                     // Velvety smooth wheel inertia
+      touchMultiplier: 1.5,
+      infinite: false,
+    });
+
+    function lenisRaf(time) {
+      lenisInstance.raf(time);
+      requestAnimationFrame(lenisRaf);
+    }
+    requestAnimationFrame(lenisRaf);
+
+    window.lenis = lenisInstance;
+
+    // Smooth Anchor Navigation via Lenis
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 68;
+          lenisInstance.scrollTo(target, {
+            offset: -navHeight - 12,
+            duration: 1.2,
+          });
+        }
+      });
+    });
+
+    // Update active nav links and back-to-top on Lenis scroll frames
+    lenisInstance.on('scroll', (e) => {
+      const scrollY = e.scroll + 120;
+      sections.forEach((current) => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop;
+        const sectionId = current.getAttribute('id');
+        const navItem = document.querySelector(`.nav-links a[href*="${sectionId}"]`);
+        if (navItem) {
+          if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            navItem.classList.add('active');
+          } else {
+            navItem.classList.remove('active');
+          }
+        }
+      });
+
+      if (backToTopBtn) {
+        if (e.scroll > 380) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      }
+    });
+
+    // Pause scroll when mobile menu is open
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        setTimeout(() => {
+          if (mobileMenuBtn.classList.contains('active')) {
+            lenisInstance.stop();
+          } else {
+            lenisInstance.start();
+          }
+        }, 50);
+      });
+    }
+
+    // Pause scroll while drawing doodle so canvas doesn't shift
+    const doodleToggleBtn = document.getElementById('doodle-toggle-btn');
+    if (doodleToggleBtn) {
+      doodleToggleBtn.addEventListener('click', () => {
+        setTimeout(() => {
+          if (doodleToggleBtn.classList.contains('active')) {
+            lenisInstance.stop();
+          } else {
+            lenisInstance.start();
+          }
+        }, 50);
+      });
+    }
   }
 
 });
