@@ -595,20 +595,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 10. INTERACTIVE NAME SOUND & STAR SPARKLE
+  // 10. INTERACTIVE NAME SOUND & TACTILE FEEDBACK
   // ==========================================
   const heroNameTrigger = document.getElementById('hero-name-trigger');
   if (heroNameTrigger) {
-    heroNameTrigger.addEventListener('click', () => {
+    heroNameTrigger.addEventListener('click', (e) => {
       sfx.playStamp();
-      const star = heroNameTrigger.querySelector('.name-star-flair');
-      if (star) {
-        star.style.transform = 'scale(1.9) rotate(180deg)';
-        star.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+      const line = e.target.closest('.name-line');
+      if (line) {
+        line.style.transform = 'scale(1.04) translateX(10px)';
+        line.style.transition = 'transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)';
         setTimeout(() => {
-          star.style.transform = '';
-          star.style.transition = '';
-        }, 400);
+          line.style.transform = '';
+          line.style.transition = '';
+        }, 300);
       }
     });
   }

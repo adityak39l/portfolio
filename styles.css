@@ -287,7 +287,7 @@ img, svg {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Syne', var(--font-display);
+  font-family: 'Outfit', var(--font-sans);
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -534,185 +534,103 @@ img, svg {
   margin-bottom: 24px;
 }
 
-/* --- BESPOKE NAME TYPOGRAPHY LOCKUP (ADITYA KUMAR VERMA) --- */
-.hero-name-container {
-  display: inline-block;
-  position: relative;
-  vertical-align: baseline;
-  margin-bottom: 2px;
+/* --- CLEAN STACKED NAME TYPOGRAPHY: ADITYA / KUMAR / VERMA --- */
+.hero-intro-header {
+  margin-bottom: 24px;
 }
 
-.stylish-name {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 12px;
-  flex-wrap: wrap;
-  font-family: 'Syne', 'Bricolage Grotesque', var(--font-display), sans-serif;
-  font-size: clamp(2.3rem, 5.2vw, 4rem);
+.hero-name-title {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: clamp(2.8rem, 6.5vw, 4.6rem);
   font-weight: 800;
-  letter-spacing: -0.035em;
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
-}
-
-.stylish-name:hover {
-  transform: translateY(-2px);
-}
-
-.name-chunk {
-  display: inline-block;
-  position: relative;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
-}
-
-.stylish-name:hover .name-chunk.name-first {
-  transform: translateY(-3px) rotate(-1deg);
-  color: var(--accent-blue);
-}
-
-.stylish-name:hover .name-chunk.name-middle {
-  transform: translateY(-5px);
-  color: #18181b;
-}
-
-.stylish-name:hover .name-chunk.name-last {
-  transform: translateY(-3px) rotate(1deg);
-  color: var(--accent-blue);
-}
-
-/* First Name: Aditya */
-.name-chunk.name-first {
+  line-height: 0.96;
+  letter-spacing: -0.04em;
   color: var(--text-ink);
-}
-
-/* Middle Name: Kumar */
-.name-chunk.name-middle {
-  color: var(--accent-blue);
-  font-family: 'Bricolage Grotesque', 'Syne', sans-serif;
-  font-style: italic;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-
-/* Last Name: Verma */
-.name-chunk.name-last {
-  color: var(--text-ink);
-}
-
-/* Sparkling Star Flair */
-.name-star-flair {
-  display: inline-block;
-  color: var(--accent-yellow);
-  font-size: 0.52em;
-  margin-left: 2px;
-  text-shadow: 1.5px 1.5px 0px var(--border-ink);
-  animation: starTwinkle 2.4s ease-in-out infinite;
-  transform-origin: center;
+  margin: 0;
+  padding: 0;
   user-select: none;
-  vertical-align: super;
 }
 
-@keyframes starTwinkle {
-  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.9; }
-  50% { transform: scale(1.35) rotate(45deg); opacity: 1; }
+.hero-name-title .name-line {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
+  width: fit-content;
+  cursor: pointer;
 }
 
-/* Artistic Hand-Drawn SVG Brush Underline */
-.name-underline-brush {
-  display: block;
-  width: 100%;
-  height: 14px;
+/* Subtle Interactive Hover: slides forward with accent */
+.hero-name-title .name-line:hover {
+  transform: translateX(8px);
   color: var(--accent-blue);
-  margin-top: -6px;
-  margin-bottom: 4px;
-  overflow: visible;
-  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.hero-name-container:hover .name-underline-brush {
-  color: var(--accent-yellow);
-  transform: scaleY(1.2);
+.hero-name-title .line-first {
+  color: var(--text-ink);
 }
 
-/* Cosmic Space Theme Mode for Aditya Kumar Verma */
-[data-theme="cosmic"] .stylish-name {
-  background: linear-gradient(135deg, #ffffff 0%, #38bdf8 45%, #c084fc 100%);
+.hero-name-title .line-middle {
+  color: var(--text-ink);
+}
+
+.hero-name-title .line-last {
+  color: var(--text-ink);
+}
+
+/* Cosmic Cyber Theme Gradient for the Stacked Name */
+[data-theme="cosmic"] .hero-name-title {
+  background: linear-gradient(135deg, #ffffff 0%, #38bdf8 55%, #818cf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 20px rgba(56, 189, 248, 0.4));
+  filter: drop-shadow(0 4px 24px rgba(56, 189, 248, 0.35));
 }
 
-[data-theme="cosmic"] .name-chunk.name-middle {
-  -webkit-text-fill-color: #38bdf8;
-  font-style: italic;
+[data-theme="cosmic"] .hero-name-title .name-line {
+  -webkit-text-fill-color: inherit;
 }
 
-[data-theme="cosmic"] .name-star-flair {
-  color: #38bdf8;
-  text-shadow: 0 0 10px #38bdf8;
-  -webkit-text-fill-color: #38bdf8;
+[data-theme="cosmic"] .hero-name-title .name-line:hover {
+  filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.8));
 }
 
-[data-theme="cosmic"] .name-underline-brush {
-  color: #38bdf8;
-  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.7));
+/* Secondary Subline below the name */
+.hero-subline {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-muted);
+  letter-spacing: -0.015em;
+  margin-top: 14px;
 }
 
-[data-theme="cosmic"] .hero-name-container:hover .name-underline-brush {
-  color: #c084fc;
-  filter: drop-shadow(0 0 12px rgba(192, 132, 252, 0.8));
+.hero-subline .highlight-marker {
+  color: var(--text-ink);
+  font-weight: 700;
 }
 
-/* Polaroid & Footer Custom Styling */
-.polaroid-name-styled {
-  font-family: 'Syne', var(--font-display);
-  font-size: 1.18rem;
+[data-theme="cosmic"] .hero-subline {
+  color: var(--text-muted);
+}
+
+/* Polaroid & Footer Clean Typography */
+.polaroid-caption .caption-title {
+  font-family: 'Outfit', var(--font-display);
+  font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.polaroid-name-styled .p-name-mid {
-  color: var(--accent-blue);
-  font-style: italic;
+  color: var(--text-ink);
 }
 
 .footer-brand {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: 'Syne', var(--font-display);
-  font-size: 1.25rem;
+  font-family: 'Outfit', var(--font-display);
+  font-size: 1.3rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-}
-.footer-brand .footer-mid {
-  color: var(--accent-blue);
-  font-style: italic;
-}
-
-/* Secondary Headline Body Text (Scaled Down for Visual Hierarchy) */
-.headline-body {
-  display: block;
-  font-family: var(--font-display);
-  font-size: clamp(1.15rem, 2.2vw, 1.65rem);
-  font-weight: 600;
-  line-height: 1.4;
-  color: var(--text-muted);
-  letter-spacing: -0.015em;
-  margin-top: 10px;
-}
-
-.headline-body .highlight-marker {
-  color: var(--text-ink);
-  font-weight: 700;
-}
-
-[data-theme="cosmic"] .headline-body {
-  color: var(--text-muted);
 }
 
 .highlight-marker {
