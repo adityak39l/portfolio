@@ -281,6 +281,32 @@ img, svg {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
+  position: relative;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+.nav-controls-sep {
+  width: 1.5px;
+  height: 22px;
+  background: var(--border-ink);
+  opacity: 0.2;
+}
+
+[data-theme="cosmic"] .nav-controls-sep {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .nav-brand {
@@ -338,16 +364,17 @@ img, svg {
 
 .nav-links {
   display: flex;
+  align-items: center;
   list-style: none;
-  gap: 28px;
+  gap: 20px;
 }
 
 .nav-link {
   font-family: var(--font-mono);
-  font-size: 0.82rem;
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   color: var(--text-ink);
   position: relative;
   padding: 4px 0;
@@ -2365,29 +2392,49 @@ body.menu-locked {
   transform: translateX(-50%) translateY(0);
 }
 
-/* 2. Navbar Center Compact Social Dock */
+/* 2. Navbar Center Dedicated Floating Social Dock */
 .nav-social-dock {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 4px 12px;
+  padding: 5px 14px;
   background: var(--bg-card);
   border: 1.5px solid var(--border-ink);
   border-radius: 9999px;
-  box-shadow: var(--shadow-print-sm);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 2px 2px 0 var(--border-ink);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+[data-theme="cosmic"] .nav-social-dock {
+  background: rgba(15, 23, 42, 0.82);
+  border: 1.5px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.15);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.nav-social-dock:hover {
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 0 var(--border-ink);
+}
+
+[data-theme="cosmic"] .nav-social-dock:hover {
+  border-color: rgba(56, 189, 248, 0.6);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.28);
 }
 
 .dock-badge-label {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
+  gap: 7px;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
+  letter-spacing: -0.01em;
+  color: var(--text-ink);
+  white-space: nowrap;
+  user-select: none;
 }
 
 .dock-live-dot {
@@ -2395,60 +2442,94 @@ body.menu-locked {
   height: 7px;
   border-radius: 50%;
   background: var(--accent-green);
-  box-shadow: 0 0 6px var(--accent-green);
+  box-shadow: 0 0 8px var(--accent-green);
+  animation: dockPulse 2s infinite ease-in-out;
+}
+
+@keyframes dockPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 6px var(--accent-green);
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.85;
+    box-shadow: 0 0 12px var(--accent-green);
+  }
+}
+
+.dock-divider {
+  width: 1.5px;
+  height: 14px;
+  background: var(--border-ink);
+  opacity: 0.25;
+  margin: 0 2px;
+}
+
+[data-theme="cosmic"] .dock-divider {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .dock-icon-strip {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .dock-icon-btn {
   position: relative;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   color: var(--text-ink);
-  transition: all 0.2s ease;
+  opacity: 0.85;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
 }
 
 .dock-icon-btn:hover {
-  transform: translateY(-2px) scale(1.15);
+  opacity: 1;
+  transform: translateY(-2px) scale(1.18);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="cosmic"] .dock-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .dock-icon-btn.github:hover { color: #18181b; }
+[data-theme="cosmic"] .dock-icon-btn.github:hover { color: #ffffff; }
 .dock-icon-btn.linkedin:hover { color: #0a66c2; }
 .dock-icon-btn.twitter:hover { color: #000000; }
+[data-theme="cosmic"] .dock-icon-btn.twitter:hover { color: #38bdf8; }
 .dock-icon-btn.instagram:hover { color: #e1306c; }
 .dock-icon-btn.youtube:hover { color: #ff0000; }
 .dock-icon-btn.gmail:hover { color: #ea4335; }
 .dock-icon-btn.whatsapp:hover { color: #25d366; }
 
-[data-theme="cosmic"] .dock-icon-btn.twitter:hover { color: #38bdf8; }
-
 .dock-mini-tip {
   position: absolute;
-  top: calc(100% + 6px);
+  top: calc(100% + 7px);
   left: 50%;
   transform: translateX(-50%) translateY(-2px);
   background: var(--border-ink);
   color: var(--bg-primary);
-  padding: 2px 6px;
-  border-radius: 4px;
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  font-weight: 600;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 4px;
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.15s ease, transform 0.15s ease;
-  z-index: 60;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 999;
 }
 
 .dock-icon-btn:hover .dock-mini-tip {
@@ -2733,10 +2814,44 @@ body.menu-locked {
   }
 }
 
-/* 2. Large Laptops & Desktops (> 1024px) */
+/* 2. Responsive Header Navigation Scaling across screens */
+@media (max-width: 1320px) {
+  .nav-links {
+    gap: 15px;
+  }
+  .nav-link {
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+  }
+}
+
 @media (max-width: 1200px) {
+  .dock-text {
+    display: none; /* Smoothly collapse label to pulsing dot + divider + 7 icons */
+  }
+  .nav-links {
+    gap: 12px;
+  }
+  .nav-link {
+    font-size: 0.74rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav-controls-sep {
+    display: none;
+  }
+  .dock-text {
+    display: inline-block; /* On tablets, desktop nav-links moved to drawer, so plenty of room! */
+  }
   .nav-social-dock {
-    display: none; /* Hide compact header dock on medium laptops so nav-links stay spacious */
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-social-dock {
+    display: none; /* Keep mobile sticky bar sleek; full 7 channels appear in mobile drawer & hero dock */
   }
 }
 
@@ -2744,6 +2859,10 @@ body.menu-locked {
 @media (max-width: 1024px) {
   .nav-container {
     padding: 0 20px;
+  }
+
+  .nav-right {
+    gap: 10px;
   }
 
   .mobile-menu-btn {

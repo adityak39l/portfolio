@@ -47,20 +47,24 @@
   <!-- Navigation Bar -->
   <header class="navbar-header" id="navbar">
     <nav class="nav-container">
-      <a href="#hero" class="nav-brand" title="Aditya">
-        <span class="brand-monogram">AKV</span>
-        <span class="brand-name">
-          <span class="brand-first">Aditya</span>
-          <span class="brand-star">✳</span>
-        </span>
-      </a>
+      <!-- 1. Left: Brand Identity -->
+      <div class="nav-left">
+        <a href="#hero" class="nav-brand" title="Aditya">
+          <span class="brand-monogram">AKV</span>
+          <span class="brand-name">
+            <span class="brand-first">Aditya</span>
+            <span class="brand-star">✳</span>
+          </span>
+        </a>
+      </div>
 
-      <!-- Nishant-Inspired Top Floating Social Dock (Navbar Center) -->
-      <div class="nav-social-dock" aria-label="Quick Social Links">
-        <span class="dock-badge-label">
+      <!-- 2. Center: Dedicated "Connect with me" Floating Capsule Dock -->
+      <div class="nav-social-dock" aria-label="Connect with me">
+        <div class="dock-badge-label">
           <span class="dock-live-dot"></span>
-          Connect:
-        </span>
+          <span class="dock-text">Connect with me</span>
+        </div>
+        <span class="dock-divider" aria-hidden="true"></span>
         <div class="dock-icon-strip">
           <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="dock-icon-btn github" aria-label="GitHub" title="GitHub • @adityak39l">
             <i class="fa-brands fa-github"></i>
@@ -78,11 +82,11 @@
             <i class="fa-brands fa-instagram"></i>
             <span class="dock-mini-tip">Instagram</span>
           </a>
-          <a href="https://youtube.com/@adityakverma-039?si=ynAmFVEJL8eBxs3e" target="_blank" rel="noopener noreferrer" class="dock-icon-btn youtube" aria-label="YouTube" title="YouTube">
+          <a href="https://youtube.com/@adityakverma-039?si=ynAmFVEJL8eBxs3e" target="_blank" rel="noopener noreferrer" class="dock-icon-btn youtube" aria-label="YouTube" title="YouTube Channel">
             <i class="fa-brands fa-youtube"></i>
             <span class="dock-mini-tip">YouTube</span>
           </a>
-          <a href="mailto:adityakverma945085@gmail.com" class="dock-icon-btn gmail" aria-label="Gmail" title="Gmail">
+          <a href="mailto:adityakverma945085@gmail.com" class="dock-icon-btn gmail" aria-label="Gmail" title="Gmail • Send Email">
             <i class="fa-solid fa-envelope"></i>
             <span class="dock-mini-tip">Gmail</span>
           </a>
@@ -93,48 +97,53 @@
         </div>
       </div>
 
-      <!-- Desktop & Mobile Nav Links -->
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#skills" class="nav-link">Toolbox</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#experience" class="nav-link">Milestones</a></li>
-        <li><a href="#resume" class="nav-link">Resume</a></li>
-        <li><a href="#reviews" class="nav-link">Notes</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-        <li class="mobile-nav-social-item">
-          <div class="mobile-drawer-socials">
-            <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="GitHub" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="https://linkedin.com/in/aditya-verma-0309l" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="LinkedIn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://x.com/adityak39l" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="X" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://instagram.com/adityak39l" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="Instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://youtube.com/@adityakverma-039?si=ynAmFVEJL8eBxs3e" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="YouTube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="mailto:adityakverma945085@gmail.com" class="drawer-social-btn" title="Gmail" aria-label="Gmail"><i class="fa-solid fa-envelope"></i></a>
-            <a href="https://wa.me/918423674966" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="WhatsApp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-          </div>
-        </li>
-      </ul>
+      <!-- 3. Right: Navigation Menu Links & Controls -->
+      <div class="nav-right">
+        <!-- Desktop & Mobile Nav Links -->
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Toolbox</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#experience" class="nav-link">Milestones</a></li>
+          <li><a href="#resume" class="nav-link">Resume</a></li>
+          <li><a href="#reviews" class="nav-link">Notes</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li class="mobile-nav-social-item">
+            <div class="mobile-drawer-socials">
+              <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="GitHub" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="https://linkedin.com/in/aditya-verma-0309l" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="LinkedIn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="https://x.com/adityak39l" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="X" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="https://instagram.com/adityak39l" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="Instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://youtube.com/@adityakverma-039?si=ynAmFVEJL8eBxs3e" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="YouTube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+              <a href="mailto:adityakverma945085@gmail.com" class="drawer-social-btn" title="Gmail" aria-label="Gmail"><i class="fa-solid fa-envelope"></i></a>
+              <a href="https://wa.me/918423674966" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="WhatsApp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </li>
+        </ul>
 
-      <!-- Action Controls: Audio SFX + Theme Switcher + Mobile Toggle -->
-      <div class="nav-actions">
-        <!-- SFX Mute/Unmute (Sujal Style) -->
-        <button type="button" id="sfx-toggle" class="icon-toggle-btn" title="Toggle Sound Effects" aria-label="Toggle Sound Effects">
-          <i class="fas fa-volume-high" id="sfx-icon"></i>
-        </button>
+        <div class="nav-controls-sep" aria-hidden="true"></div>
 
-        <!-- Theme Toggle (Paper Brutalist vs Cosmic Dark) -->
-        <button type="button" id="theme-toggle" class="theme-switch-btn" title="Switch Theme (Paper Editorial / Cosmic Tech)" aria-label="Switch Theme">
-          <span class="theme-icon moon-icon"><i class="fas fa-moon"></i></span>
-          <span class="theme-icon sun-icon"><i class="fas fa-sun"></i></span>
-          <span class="theme-badge" id="theme-text">Paper</span>
-        </button>
+        <!-- Action Controls: Audio SFX + Theme Switcher + Mobile Toggle -->
+        <div class="nav-actions">
+          <!-- SFX Mute/Unmute (Sujal Style) -->
+          <button type="button" id="sfx-toggle" class="icon-toggle-btn" title="Toggle Sound Effects" aria-label="Toggle Sound Effects">
+            <i class="fas fa-volume-high" id="sfx-icon"></i>
+          </button>
 
-        <!-- Mobile Hamburger Button -->
-        <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open Navigation Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+          <!-- Theme Toggle (Paper Brutalist vs Cosmic Dark) -->
+          <button type="button" id="theme-toggle" class="theme-switch-btn" title="Switch Theme (Paper Editorial / Cosmic Tech)" aria-label="Switch Theme">
+            <span class="theme-icon moon-icon"><i class="fas fa-moon"></i></span>
+            <span class="theme-icon sun-icon"><i class="fas fa-sun"></i></span>
+            <span class="theme-badge" id="theme-text">Paper</span>
+          </button>
+
+          <!-- Mobile Hamburger Button -->
+          <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open Navigation Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </div>
     </nav>
   </header>
