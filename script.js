@@ -748,8 +748,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '.projects-grid',
     '.certifications-grid',
     '.contact-card-list',
-    '.resume-highlights-grid',
-    '.floating-metrics'
+    '.resume-highlights-grid'
   ];
 
   staggerTargets.forEach(selector => {
