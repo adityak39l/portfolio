@@ -1914,64 +1914,141 @@ img, svg {
   color: var(--accent-blue);
 }
 
-/* --- RESPONSIVE BREAKPOINTS --- */
-@media (max-width: 992px) {
-  .hero-container {
-    grid-template-columns: 1fr;
-    text-align: left;
-  }
-  .hero-visual-col {
-    order: -1;
-    margin-bottom: 20px;
-  }
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
+/* ==========================================================================
+   INTERACTIVE USER-FRIENDLY SYSTEM: MOBILE DRAWER, RESUME HELPER, BACK-TO-TOP
+   ========================================================================== */
+
+/* Body scroll lock when mobile navigation is open */
+body.menu-locked {
+  overflow: hidden;
+  touch-action: none;
 }
 
-@media (max-width: 768px) {
-  .nav-links {
-    position: fixed;
-    top: var(--nav-height);
-    left: 0;
-    right: 0;
-    background: var(--bg-card);
-    border-bottom: 2px solid var(--border-ink);
-    padding: 24px;
-    flex-direction: column;
-    gap: 18px;
-    box-shadow: var(--shadow-print-lg);
-    transform: translateY(-120%);
-    transition: transform var(--transition-normal);
-  }
-
-  .nav-links.open {
-    transform: translateY(0);
-  }
-
-  .mobile-menu-btn {
-    display: flex;
-  }
-
-  .scribble-annotation {
-    display: none;
-  }
-
-  .resume-frame-container {
-    height: 450px;
-  }
+/* Animated Hamburger Toggle Button */
+.mobile-menu-btn {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 2px solid var(--border-ink);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-print-sm);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 4px;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
 }
 
-@media (max-width: 480px) {
-  .hero-headline {
-    font-size: 2.1rem;
-  }
-  .hero-cta-group .btn {
-    width: 100%;
-  }
-  .floating-metrics {
-    flex-direction: column;
-  }
+.mobile-menu-btn:hover {
+  transform: translate(1px, 1px);
+}
+
+.mobile-menu-btn span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text-ink);
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Drawer Social Strip */
+.mobile-nav-social-item {
+  display: none;
+}
+
+/* Mobile Resume Helper Card */
+.resume-mobile-card {
+  display: none;
+  background: var(--bg-card);
+  border: 2px solid var(--border-ink);
+  box-shadow: var(--shadow-print);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.mobile-resume-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.mobile-doc-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-ink);
+}
+
+.mobile-doc-sub {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.mobile-resume-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Floating Back to Top Button */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--border-ink);
+  color: var(--text-ink);
+  box-shadow: var(--shadow-print-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 750;
+}
+
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top-btn:hover {
+  transform: translateY(-3px);
+  background: var(--accent-blue);
+  color: #ffffff;
+  box-shadow: var(--shadow-print);
+}
+
+[data-theme="cosmic"] .back-to-top-btn {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), 0 0 10px rgba(56, 189, 248, 0.2);
 }
 
 /* ==========================================================================
@@ -2506,65 +2583,389 @@ img, svg {
   color: var(--bg-primary);
 }
 
-/* Responsive Overrides */
-@media (max-width: 1200px) {
-  .nav-social-dock {
-    display: none;
+/* ==========================================================================
+   COMPREHENSIVE CROSS-DEVICE RESPONSIVE SYSTEM (FOR ALL SCREENS & TOUCH DEVICES)
+   ========================================================================== */
+
+/* 1. Universal Touchscreen & Accessible Inputs */
+@media (hover: none) and (pointer: coarse) {
+  /* Prevent accidental text selection while doodling or tapping fast */
+  .btn, .tool-btn, .color-dot, .dock-social-link, .filter-btn {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Tactile touch press state */
+  .btn:active,
+  .filter-btn:active,
+  .dock-social-link:active,
+  .social-chip:active,
+  .tool-btn:active,
+  .footer-social-btn:active {
+    transform: scale(0.96) !important;
   }
 }
 
-@media (max-width: 768px) {
-  .hero-dock-wrapper {
-    padding: 12px 12px 6px;
+/* Prevent iOS Safari input focus auto-zoom by maintaining 16px minimum */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="url"],
+  textarea,
+  select {
+    font-size: 16px !important;
   }
-  .floating-connect-dock {
-    padding: 8px 14px;
+}
+
+/* 2. Large Laptops & Desktops (> 1024px) */
+@media (max-width: 1200px) {
+  .nav-social-dock {
+    display: none; /* Hide compact header dock on medium laptops so nav-links stay spacious */
+  }
+}
+
+/* 3. Tablets, iPads & Small Laptops (769px - 1024px) */
+@media (max-width: 1024px) {
+  .nav-container {
+    padding: 0 20px;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - var(--nav-height));
+    overflow-y: auto;
+    background: var(--bg-card);
+    border-bottom: 2px solid var(--border-ink);
+    padding: 24px 28px;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: var(--shadow-print-lg);
+    transform: translateY(-120%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform var(--transition-normal), opacity var(--transition-fast);
+    z-index: 790;
+  }
+
+  .nav-links.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-link {
+    font-size: 0.95rem;
+    padding: 8px 0;
+    display: inline-block;
+  }
+
+  .mobile-nav-social-item {
+    display: block;
+    padding-top: 14px;
+    border-top: 1.5px dashed var(--border-ink);
+    margin-top: 10px;
+  }
+
+  .mobile-drawer-socials {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     gap: 10px;
-    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .drawer-social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 1.5px solid var(--border-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    color: var(--text-ink);
+    box-shadow: var(--shadow-print-sm);
+    transition: transform var(--transition-fast), color var(--transition-fast);
+  }
+
+  .drawer-social-btn:hover {
+    transform: scale(1.1);
+    color: var(--accent-blue);
+  }
+
+  /* Hero adjustments for tablet */
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-top: 24px;
+  }
+
+  .hero-visual-col {
+    order: -1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .polaroid-card {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 4. Medium Screens & Phablets (641px - 768px) */
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 64px;
+  }
+
+  .section-container {
+    padding: 60px 20px 30px;
+  }
+
+  .section-heading {
+    white-space: normal;
+    font-size: 2rem;
+  }
+
+  .section-title-wrap {
+    gap: 16px;
+  }
+
+  /* Hero Section */
+  .hero-dock-wrapper {
+    padding: 12px 14px 4px;
+  }
+
+  .floating-connect-dock {
+    padding: 8px 16px;
+    gap: 10px;
+    width: auto;
+    max-width: 100%;
     justify-content: center;
     flex-wrap: wrap;
-    border-radius: 24px;
+    border-radius: 9999px;
   }
+
   .dock-vertical-line {
     display: none;
   }
+
   .dock-links-list {
     gap: 6px;
     flex-wrap: wrap;
     justify-content: center;
   }
+
   .dock-social-link {
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
     font-size: 1.05rem;
   }
-  .footer-inner {
+
+  .scribble-annotation {
+    display: none; /* Hide decorative floating arrow on mobile so it doesn't cause overflow */
+  }
+
+  /* Projects Filter Bar */
+  .project-filter-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .project-filter-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 8px 14px;
+    font-size: 0.76rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .project-card {
+    padding: 20px;
+  }
+
+  .project-name {
+    font-size: 1.3rem;
+  }
+
+  /* Resume Section on Mobile */
+  .resume-mobile-card {
+    display: block;
+  }
+
+  .resume-frame-container {
+    display: none; /* Hide heavy iframe on mobile touchscreens */
+  }
+
+  .resume-meta-bar {
     flex-direction: column;
     align-items: flex-start;
+    gap: 16px;
   }
+
+  .resume-cta-group {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .resume-cta-group .btn {
+    width: 100%;
+  }
+
+  .resume-highlights-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Contact Cards & WhatsApp */
   .whatsapp-card {
     flex-direction: column;
     align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
   }
+
   .whatsapp-cta-badge {
     align-self: flex-start;
   }
+
+  .contact-channel-card {
+    padding: 16px;
+  }
+
+  /* Site Footer */
+  .site-footer {
+    padding: 32px 20px 80px; /* Extra bottom padding so Doodle/Back-to-top buttons don't block content */
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .footer-socials {
+    flex-wrap: wrap;
+  }
+
+  /* Doodle Toolbar Mobile Safe-Area Placement */
+  .doodle-toolbar {
+    bottom: 20px;
+    left: 16px;
+  }
+
+  /* Back to Top Mobile Placement */
+  .back-to-top-btn {
+    bottom: 20px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 0.95rem;
+  }
 }
 
+/* 5. Compact Smartphones (320px - 480px) */
 @media (max-width: 480px) {
+  .hero-headline {
+    font-size: clamp(1.85rem, 7.5vw, 2.4rem);
+    line-height: 1.15;
+  }
+
+  .hero-desc {
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .floating-metrics {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .hero-dock-wrapper {
+    padding: 8px 10px 4px;
+  }
+
+  .floating-connect-dock {
+    padding: 8px 12px;
+    border-radius: 20px;
+    gap: 6px;
+  }
+
   .dock-status-tag {
     width: 100%;
     justify-content: center;
+    margin-bottom: 2px;
   }
+
+  .dock-title-text {
+    font-size: 0.82rem;
+  }
+
   .dock-links-list {
-    gap: 5px;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
+
   .dock-social-link {
-    width: 32px;
-    height: 32px;
-    font-size: 0.95rem;
+    width: 34px;
+    height: 34px;
+    font-size: 0.98rem;
   }
+
   .hero-social-row {
     justify-content: center;
+  }
+
+  .social-chip {
+    padding: 5px 10px;
+    font-size: 0.72rem;
+  }
+
+  .resume-highlights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .polaroid-card {
+    padding: 14px 14px 18px;
+  }
+
+  .laptop-illustration {
+    height: 150px;
+  }
+
+  .field-notes-grid {
+    grid-template-columns: 1fr;
   }
 }

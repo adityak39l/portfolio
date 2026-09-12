@@ -317,17 +317,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function startDraw(e) {
       if (!doodleActive) return;
+      if (e.cancelable && e.type && e.type.startsWith('touch')) {
+        e.preventDefault();
+      }
       isDrawing = true;
-      const x = e.clientX || (e.touches && e.touches[0].clientX);
-      const y = e.clientY || (e.touches && e.touches[0].clientY);
+      const x = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+      const y = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
       dCtx.beginPath();
       dCtx.moveTo(x, y);
     }
 
     function draw(e) {
       if (!isDrawing || !doodleActive) return;
-      const x = e.clientX || (e.touches && e.touches[0].clientX);
-      const y = e.clientY || (e.touches && e.touches[0].clientY);
+      if (e.cancelable && e.type && e.type.startsWith('touch')) {
+        e.preventDefault();
+      }
+      const x = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+      const y = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
       dCtx.lineTo(x, y);
       dCtx.strokeStyle = strokeColor;
       dCtx.lineWidth = lineWidth;
@@ -346,8 +352,8 @@ document.addEventListener('DOMContentLoaded', () => {
     doodleCanvas.addEventListener('mousemove', draw);
     window.addEventListener('mouseup', stopDraw);
 
-    doodleCanvas.addEventListener('touchstart', startDraw, { passive: true });
-    doodleCanvas.addEventListener('touchmove', draw, { passive: true });
+    doodleCanvas.addEventListener('touchstart', startDraw, { passive: false });
+    doodleCanvas.addEventListener('touchmove', draw, { passive: false });
     window.addEventListener('touchend', stopDraw);
   }
 
@@ -483,22 +489,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 8. MOBILE NAVIGATION DRAWER
+  // 8. MOBILE NAVIGATION DRAWER (Enhanced UX)
   // ==========================================
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const navLinks = document.getElementById('nav-links');
 
+  function closeMobileNav() {
+    if (navLinks && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      if (mobileMenuBtn) {
+        mobileMenuBtn.classList.remove('active');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      }
+      document.body.classList.remove('menu-locked');
+    }
+  }
+
+  function openMobileNav() {
+    if (navLinks) {
+      navLinks.classList.add('open');
+      if (mobileMenuBtn) {
+        mobileMenuBtn.classList.add('active');
+        mobileMenuBtn.setAttribute('aria-expanded', 'true');
+      }
+      document.body.classList.add('menu-locked');
+    }
+  }
+
   if (mobileMenuBtn && navLinks) {
-    mobileMenuBtn.addEventListener('click', () => {
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       sfx.playClick();
-      navLinks.classList.toggle('open');
+      if (navLinks.classList.contains('open')) {
+        closeMobileNav();
+      } else {
+        openMobileNav();
+      }
     });
 
-    // Close menu when link is clicked
+    // Close menu when any nav link is clicked
     document.querySelectorAll('.nav-link').forEach((link) => {
       link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
+        closeMobileNav();
       });
+    });
+
+    // Close when tapping outside the menu on mobile
+    document.addEventListener('click', (e) => {
+      if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        closeMobileNav();
+      }
+    });
+
+    // Close on Escape key for accessibility
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        closeMobileNav();
+      }
     });
   }
 
@@ -521,6 +568,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
-  });
+  }, { passive: true });
+
+
+  // ==========================================
+  // 9. FLOATING BACK-TO-TOP BUTTON (User-Friendly Navigation)
+  // ==========================================
+  const backToTopBtn = document.getElementById('back-to-top');
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 380) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    backToTopBtn.addEventListener('click', () => {
+      sfx.playClick();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
 
 });

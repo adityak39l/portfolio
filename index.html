@@ -90,7 +90,7 @@
         </div>
       </div>
 
-      <!-- Desktop Nav Links -->
+      <!-- Desktop & Mobile Nav Links -->
       <ul class="nav-links" id="nav-links">
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#skills" class="nav-link">Toolbox</a></li>
@@ -99,6 +99,17 @@
         <li><a href="#resume" class="nav-link">Resume</a></li>
         <li><a href="#reviews" class="nav-link">Notes</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li class="mobile-nav-social-item">
+          <div class="mobile-drawer-socials">
+            <a href="https://github.com/adityak39l" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="GitHub" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com/in/aditya-verma-0309l" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="LinkedIn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://x.com/adityak39l" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="X" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://instagram.com/adityak39l" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="Instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://youtube.com/@adityakverma-039?si=ynAmFVEJL8eBxs3e" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="YouTube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="mailto:adityakverma945085@gmail.com" class="drawer-social-btn" title="Gmail" aria-label="Gmail"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://wa.me/918423674966" target="_blank" rel="noopener noreferrer" class="drawer-social-btn" title="WhatsApp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </li>
       </ul>
 
       <!-- Action Controls: Audio SFX + Theme Switcher + Mobile Toggle -->
@@ -998,7 +1009,28 @@
           </div>
         </div>
 
-        <!-- Embedded PDF Iframe -->
+        <!-- Mobile-friendly fallback card for small screens & phones -->
+        <div class="resume-mobile-card">
+          <div class="mobile-resume-header">
+            <div class="doc-icon"><i class="fas fa-file-pdf"></i></div>
+            <div>
+              <h4 class="mobile-doc-title">Aditya_Verma_Resume.pdf</h4>
+              <p class="mobile-doc-sub">Optimized for direct mobile viewing &amp; download</p>
+            </div>
+          </div>
+          <div class="mobile-resume-actions">
+            <a href="Aditya_Verma_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-block">
+              <i class="fas fa-arrow-up-right-from-square"></i>
+              <span>Open PDF in Fullscreen</span>
+            </a>
+            <a href="Aditya_Verma_Resume.pdf" download="Aditya_Kumar_Verma_Resume.pdf" class="btn btn-primary btn-block stamp-hover">
+              <i class="fas fa-download"></i>
+              <span>Download Resume PDF</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Embedded PDF Iframe (Desktop & Tablet) -->
         <div class="resume-frame-container">
           <iframe 
             src="Aditya_Verma_Resume.pdf#view=FitH" 
@@ -1334,6 +1366,11 @@
       </div>
     </div>
   </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button type="button" id="back-to-top" class="back-to-top-btn" aria-label="Scroll back to top" title="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <!-- Scripts -->
   <script src="script.js"></script>
