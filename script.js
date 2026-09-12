@@ -593,4 +593,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+  // ==========================================
+  // 10. INTERACTIVE NAME SOUND & STAR SPARKLE
+  // ==========================================
+  const heroNameTrigger = document.getElementById('hero-name-trigger');
+  if (heroNameTrigger) {
+    heroNameTrigger.addEventListener('click', () => {
+      sfx.playStamp();
+      const star = heroNameTrigger.querySelector('.name-star-flair');
+      if (star) {
+        star.style.transform = 'scale(1.9) rotate(180deg)';
+        star.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        setTimeout(() => {
+          star.style.transform = '';
+          star.style.transition = '';
+        }, 400);
+      }
+    });
+  }
+
 });

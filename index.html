@@ -8,10 +8,10 @@
   <meta name="keywords" content="Aditya Kumar Verma, BU Jhansi, IET Jhansi, Full Stack Developer, Next.js, React, Python, Web Developer, Portfolio, BU Result Hub" />
   <meta name="author" content="Aditya Kumar Verma" />
 
-  <!-- Fonts: Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
+  <!-- Fonts: Syne, Bricolage Grotesque, Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -47,9 +47,13 @@
   <!-- Navigation Bar -->
   <header class="navbar-header" id="navbar">
     <nav class="nav-container">
-      <a href="#hero" class="nav-brand">
+      <a href="#hero" class="nav-brand" title="Aditya Kumar Verma">
         <span class="brand-monogram">AKV</span>
-        <span class="brand-name">Aditya<span class="brand-star">✳</span></span>
+        <span class="brand-name">
+          <span class="brand-first">Aditya</span>
+          <span class="brand-surname">K. Verma</span>
+          <span class="brand-star">✳</span>
+        </span>
       </a>
 
       <!-- Nishant-Inspired Top Floating Social Dock (Navbar Center) -->
@@ -197,9 +201,21 @@
             </span>
           </div>
 
-          <!-- Hero Headline (Sujal Bold Editorial + Highlighter) -->
+          <!-- Hero Headline with Bespoke Name Styling -->
           <h1 class="hero-headline">
-            Aditya Kumar Verma builds <span class="highlight-marker">useful web systems</span> &amp; data solutions.
+            <span class="hero-name-container">
+              <span class="stylish-name" id="hero-name-trigger" title="Aditya Kumar Verma">
+                <span class="name-chunk name-first">Aditya</span>
+                <span class="name-chunk name-middle">Kumar</span>
+                <span class="name-chunk name-last">Verma</span>
+                <span class="name-star-flair" aria-hidden="true">✦</span>
+              </span>
+              <!-- Artistic SVG Underline Brush -->
+              <svg class="name-underline-brush" viewBox="0 0 340 18" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M4 12C85 4 215 2 336 10C245 6 130 9 26 15" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="headline-body">builds <span class="highlight-marker">useful web systems</span> &amp; data solutions.</span>
           </h1>
 
           <!-- Typewriter Dynamic Subtitle (Garvit Style) -->
@@ -313,7 +329,11 @@
                   <span class="badge-status">B.Tech Final Year</span>
                 </div>
                 <div class="caption-details">
-                  <p class="caption-title">Aditya Kumar Verma</p>
+                  <p class="caption-title polaroid-name-styled">
+                    <span class="p-name-first">Aditya</span>
+                    <span class="p-name-mid">Kumar</span>
+                    <span class="p-name-last">Verma</span>
+                  </p>
                   <p class="caption-subtitle">Electronics &amp; Instrumentation • BU Jhansi</p>
                 </div>
               </div>
@@ -1327,7 +1347,10 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-left">
-        <a href="#hero" class="footer-brand">Aditya Kumar Verma<span class="star-accent">✳</span></a>
+        <a href="#hero" class="footer-brand">
+          <span class="footer-first">Aditya</span> <span class="footer-mid">Kumar</span> <span class="footer-last">Verma</span>
+          <span class="star-accent">✳</span>
+        </a>
         <p class="footer-copyright">
           Crafted with care, code, and curiosity. © 2026 Aditya Kumar Verma. All rights reserved.
         </p>
