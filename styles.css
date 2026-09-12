@@ -568,28 +568,32 @@ img, svg {
 
 .hero-name-title {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  gap: 0.3em;
   font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, sans-serif;
-  font-size: clamp(2.8rem, 6.5vw, 4.6rem);
+  font-size: clamp(2.2rem, 5.2vw, 4.1rem);
   font-weight: 800;
-  line-height: 0.96;
-  letter-spacing: -0.04em;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
   color: var(--text-ink);
   margin: 0;
   padding: 0;
   user-select: none;
+  white-space: nowrap;
 }
 
 .hero-name-title .name-line {
   display: inline-block;
+  white-space: nowrap;
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
-  width: fit-content;
   cursor: pointer;
 }
 
-/* Subtle Interactive Hover: slides forward with accent */
+/* Subtle Interactive Hover: lift up slightly with accent */
 .hero-name-title .name-line:hover {
-  transform: translateX(8px);
+  transform: translateY(-4px);
   color: var(--accent-blue);
 }
 
@@ -605,12 +609,12 @@ img, svg {
   color: var(--text-ink);
 }
 
-/* Cosmic Cyber Theme Gradient for the Stacked Name */
+/* Cosmic Cyber Theme Gradient for the Single-Line Name */
 [data-theme="cosmic"] .hero-name-title {
   background: linear-gradient(135deg, #ffffff 0%, #38bdf8 55%, #818cf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 24px rgba(56, 189, 248, 0.35));
+  filter: drop-shadow(0 4px 20px rgba(56, 189, 248, 0.3));
 }
 
 [data-theme="cosmic"] .hero-name-title .name-line {
@@ -3124,6 +3128,12 @@ body.menu-locked {
 
 /* 5. Compact Smartphones (320px - 480px) */
 @media (max-width: 480px) {
+  .hero-name-title {
+    font-size: clamp(1.6rem, 6.8vw, 2.3rem);
+    gap: 0.22em;
+    letter-spacing: -0.025em;
+  }
+
   .hero-headline {
     font-size: clamp(1.85rem, 7.5vw, 2.4rem);
     line-height: 1.15;
