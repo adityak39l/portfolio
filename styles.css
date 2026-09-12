@@ -1706,6 +1706,11 @@ img, svg {
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
 }
 
+.featured-project .project-screenshot-img {
+  aspect-ratio: 16 / 9;
+  max-height: 480px;
+}
+
 .project-screenshot-link:hover .project-screenshot-img {
   transform: scale(1.025);
 }
