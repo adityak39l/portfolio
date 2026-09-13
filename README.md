@@ -33,7 +33,7 @@ The design synthesizes the best elements from two distinct aesthetic paradigms:
 - **🌌 Interactive Canvas Constellation Engine**: Fullscreen particle network responding to cursor movement.
 - **⌨️ Dynamic Terminal Typewriter**: Cycling through credentials and engineering specializations.
 - **📁 Shipped Projects Showcase with Live Links**:
-  - [BU Result Hub](https://bu-btech-resulthub.vercel.app/) — Academic analytics & BeautifulSoup scraper portal (150+ students indexed).
+  - [BU Result Hub](https://adityak39l.github.io/BU-Result-HUB/) — Academic analytics & BeautifulSoup scraper portal (150+ students indexed).
   - [Innovation & Automation Club](https://adityak39l.github.io/AK39-INNOVATION-AUTOMATION-CLUB-IET-BU-JHANSI/) — Official club web portal.
   - [Demon Slayer Web Experience](https://demonsla.ccbp.tech/) — CSS scroll-driven parallax animations.
   - [Gourmet Food Ordering App](https://food39.ccbp.tech/) — Real-time cart state management.
